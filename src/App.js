@@ -41,13 +41,20 @@ handleAddProject(project){
   this.setState({projects:projects})
 }
 
+hadleDeleteProject(id){
+  let projects=this.state.projects;
+  let index=projects.findIndex(x=>x.id===id)
+    projects.splice(index,1);
+    this.setState({projects:projects});
+}
+
 
   render() {
     return (
       <div className="App">
         Hello from App.js
         <AddProject addProject={this.handleAddProject.bind(this)}/>
-        <Projects projects={this.state.projects}/>
+        <Projects onDelete={this.hadleDeleteProject.bind(this)} projects={this.state.projects}/>
       </div>
     );
   }
