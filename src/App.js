@@ -3,6 +3,7 @@ import './App.css';
 import Projects from './Components/Projects'
 import AddProject from './Components/AddProject'
 import uuid from 'uuid'
+import $ from 'jquery'
 
 class App extends Component {
 // set states
@@ -10,12 +11,12 @@ class App extends Component {
 constructor(){
   super(); 
   this.state={
-    projects:[]
+    projects:[],
+    todos:[]
+
   }
 }
-
-//life cycle method
-componentWillMount(){
+getProjects(){
   this.setState({projects:[{
     id: uuid.v4(),
     title:'Buisness Website',
@@ -31,6 +32,32 @@ componentWillMount(){
     title:'Ecommerce Shopping Cart',
     category:'Web Development'
   }]})
+
+}
+
+getTodos(){
+  $.ajax({
+    url:'https://jsonplaceholder.typicode.com/todos',
+    dataType:'json',
+    cache: false,
+    success: function(data){
+      this.setState({todos:data},function(){
+        console.log('State:',this.state)
+      })
+    }.bind(this),
+    error: function(xhr,status,err){
+      console.log(err)
+    }
+  })
+}
+//life cycle method
+componentWillMount(){
+  this.getProjects();
+  this.getTodos();
+}
+
+componentDidMount(){
+  this.getTodos();
 }
 
 handleAddProject(project){
