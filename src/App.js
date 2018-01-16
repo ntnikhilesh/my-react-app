@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
         Hello CC...
 
-        <Projects />
+        <Projects test='test value from App.js'/>
       </div>
     );
   }

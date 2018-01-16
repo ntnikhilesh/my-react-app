@@ -5,6 +5,7 @@ class Projects extends Component {
     return (
       <div className="Projects">
         Hello CC Projects...
+        {this.props.test}
       </div>
     );
   }
