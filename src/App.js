@@ -29,11 +29,20 @@ componentWillMount(){
   }]})
 }
 
+handleAddProject(project){
+  console.log('new project from add project in App.js : ',project)
+
+  let projects=this.state.projects;
+  projects.push(project);
+  this.setState({projects:projects})
+}
+
+
   render() {
     return (
       <div className="App">
         Hello from App.js
-        <AddProject/>
+        <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects}/>
       </div>
     );
