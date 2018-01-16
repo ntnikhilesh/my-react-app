@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Projects from './Components/Projects'
+import AddProject from './Components/AddProject'
 
 class App extends Component {
 // set states
@@ -32,7 +33,7 @@ componentWillMount(){
     return (
       <div className="App">
         Hello from App.js
-
+        <AddProject/>
         <Projects projects={this.state.projects}/>
       </div>
     );
